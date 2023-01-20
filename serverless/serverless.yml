@@ -1,0 +1,17 @@
+service: testing-node
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  memorySize: 256
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+
+functions:
+  divvyBike:
+    handler: src/handlers/divvyBike.handler
+    events:
+      - http:
+          method: POST
+          path: /bikes
